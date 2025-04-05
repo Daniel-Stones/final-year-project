@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .center-title {
+        @apply text-center text-3xl font-semibold text-default-green mb-6 border-b-4 border-default-green pb-2;
+    }
+
+    .input-field {
+        @apply block w-full px-4 py-2 border border-default-green rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-600;;
+    }
+
+    .input-form-background {
+        @apply max-w-md mx-auto p-6 bg-white shadow-md rounded-md;
+    }
+
+    .input-field-font {
+        @apply block text-sm font-medium text-gray-700 mb-2;
+    }
+
+    .navbar-button {
+        @apply bg-default-green text-default-grey hover:bg-default-grey hover:text-default-green px-3 py-2 rounded;
+    }
+
+    .navbar-button-invert {
+        @apply bg-default-grey text-default-green hover:bg-default-green hover:text-default-grey px-3 py-2 rounded;
+    }
+
+    .large-submit-button {
+        @apply w-full bg-default-green text-default-grey px-4 py-2 rounded-md hover:bg-default-grey hover:text-default-green focus:outline-none focus:ring-2 focus:ring-blue-300;
+    }
+
+    .bordered-submit-button {
+        @apply bg-default-green text-white py-2 px-4 rounded hover:bg-default-grey hover:text-default-green hover:border-default-green border-2 border-transparent;
+    }
+
+}
