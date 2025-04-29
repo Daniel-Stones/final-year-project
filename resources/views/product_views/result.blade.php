@@ -1,5 +1,5 @@
 <x-layout :title="'Product Result'">
-    <h1 class="text-2xl text-center mb-8">Scanned Product</h1>
+    <h1 class="center-title text-2xl text-center mb-4">Scanned product</h1>
 
     @if($product)
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 max-w-5xl mx-auto">

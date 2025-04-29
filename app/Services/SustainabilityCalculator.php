@@ -4,6 +4,14 @@ namespace App\Services;
 
 class SustainabilityCalculator
 {
+    protected DistanceCalculator $distance;
+
+    public function __construct(DistanceCalculator $distance)
+    {
+        $this->distance = $distance;
+    }
+
+
     public function calculateScores($product)
     {
         $scores = [
@@ -40,14 +48,21 @@ class SustainabilityCalculator
             $scores['organic'] = ['score' => 2, 'percent' => 100, 'text' => 'Organic: Yes'];
         }
 
-        // Origin
-        $origins = $product['origins'] ?? '';
-        if (str_contains(strtolower($origins), 'united kingdom') || str_contains(strtolower($origins), 'uk')) {
-            $scores['origin'] = ['score' => 2, 'percent' => 100, 'text' => 'Origin distance: Domestic'];
-        } elseif ($origins) {
-            $scores['origin'] = ['score' => 1, 'percent' => 50, 'text' => 'Origin distance: International'];
-        }
+        $origin = $product['origins'] ?? '';
+        if ($origin) {
+            $originCoords = $this->distance->getCoordinates($origin);
+            $ukCoords = $this->distance->getCoordinates("United Kingdom");
 
+            if ($originCoords && $ukCoords) {
+                $distanceKm = $this->distance->haversine($originCoords[0], $originCoords[1], $ukCoords[0], $ukCoords[1]);
+                $scores['origin'] = [
+                    'score' => 2,
+                    'percent' => 100,
+                    'text' => "Origin distance: {$distanceKm} km"
+                ];
+            } 
+        }
+    
         $totalScore = min(array_sum(array_column($scores, 'score')), 10);
         return ['scores' => $scores, 'totalScore' => $totalScore];
     }

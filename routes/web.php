@@ -7,8 +7,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/scan-barcode', function () {
-    return view('barcode_scan');
-});
-
 Route::get('/result', [ProductController::class, 'show']);

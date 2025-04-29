@@ -35,6 +35,19 @@
     </nav>
 
     <main class="container mx-auto p-4">
+      <form method="GET" action="/result" class="mb-6">
+        <div class="flex items-center space-x-2">
+          <input 
+            type="text" 
+            name="barcode" 
+            placeholder="Search with product barcode" 
+            value="{{ request('barcode') }}" 
+            class="input-field h-12" 
+          />
+          <button type="submit" class="bordered-submit-button">Search</button>
+          <a href="/" class="bordered-submit-button inline-block text-center">Scan a barcode</a>
+        </div>
+      </form>
       {{$slot}}
     </main>
 
