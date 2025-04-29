@@ -8,7 +8,7 @@
         <div class="text-center">
             <button id="scanner-toggle" type="button" class="bordered-submit-button">Start scanning</button>
             <p class="mt-3">Result: <span id="result">None</span></p>
-            <p id="barcode-found" class="text-green-600 font-bold hidden mt-2">✅ Barcode Found!</p>
+            <p id="barcode-found" class="text-green-600 font-bold hidden mt-2">Barcode Found!</p>
         </div>
     </div>
 

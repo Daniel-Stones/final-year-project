@@ -12,7 +12,7 @@ export default {
         extend: {
             colors: {
                 'default-green': '#238955',
-                'default-grey': '#D1D1D1'
+                'default-grey': '#F8F8F8'
             }
         },
     },

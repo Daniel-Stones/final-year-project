@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Quagga.onDetected(function (result) {
             const code = result.codeResult.code;
             console.log("Barcode detected:", code);
-            document.getElementById('result').textContent = code;
+            window.location.href = `/result?barcode=${code}`;
             stopScanner();
         });
     }
