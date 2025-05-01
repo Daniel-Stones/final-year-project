@@ -46,6 +46,13 @@
                         </div>
                     </li>
 
+                    <li class="flex items-center space-x-3">
+                        <span class="w-32">{{ $scores['emissions']['text'] }}</span>
+                        <div class="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-default-green transition-all duration-300 ease-in-out" style="width: {{ $scores['emissions']['percent'] }}%"></div>
+                        </div>
+                    </li>
+
                 </ul>
                 <p id="overall-score" class="font-semibold mb-2 text-center">Overall Score: {{ $totalScore }}/10</p>
                 <div class="w-full h-6 bg-gray-200 rounded-full overflow-hidden border border-black">
