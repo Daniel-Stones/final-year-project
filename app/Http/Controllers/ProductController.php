@@ -27,4 +27,5 @@ class ProductController extends Controller
 
         return view('product_views.result', compact('barcode', 'product', 'scores', 'totalScore'));
     }
+    
 }

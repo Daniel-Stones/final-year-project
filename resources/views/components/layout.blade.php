@@ -19,6 +19,10 @@
           @auth
             <div class="flex items-center space-x-4">
               <span>Logged in as {{ Auth::user()->name }}</span>
+              <form method="GET" action="/favourites">
+                @csrf
+                <button type="submit" class="navbar-button-invert">Favourites</button>
+              </form>
               <form method="POST" action="/logout">
                 @csrf
                 <button type="submit" class="navbar-button-invert">Logout</button>

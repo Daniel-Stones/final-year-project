@@ -28,8 +28,8 @@
     }
 
     .large-submit-button {
-        @apply w-full bg-default-green text-default-grey px-4 py-2 rounded-md hover:bg-default-grey hover:text-default-green focus:outline-none focus:ring-2 focus:ring-blue-300;
-    }
+        @apply w-full bg-default-green text-default-grey rounded hover:bg-default-grey hover:text-default-green hover:border-default-green border-2 border-transparent inline-block text-center box-border h-12 leading-tight;
+    }    
 
     .bordered-submit-button {
         @apply bg-default-green text-white py-1 px-4 rounded hover:bg-default-grey hover:text-default-green hover:border-default-green border-2 border-transparent inline-block text-center box-border h-12 leading-tight;

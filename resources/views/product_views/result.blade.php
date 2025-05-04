@@ -4,13 +4,36 @@
     @if($product)
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 max-w-5xl mx-auto">
             <!-- Product Info -->
-            <div class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between h-full">
                 <h2 class="text-xl font-semibold mb-4">Product Info</h2>
                 <p><strong>Name:</strong> {{ $product['product_name'] ?? 'No name found' }}</p>
                 <p><strong>Packaging:</strong> {{ $product['packaging'] ?? 'Unknown' }}</p>
                 <p><strong>Labels:</strong> {{ !empty($product['labels_tags']) ? implode(', ', $product['labels_tags']) : 'None' }}</p>
                 <p><strong>Origin:</strong> {{ $product['origins'] ?? 'Unknown' }}</p>
                 <p><strong>Ingredients:</strong> {{ $product['ingredients_text'] ?? 'Not available' }}</p>
+
+                @auth
+                    <div class="mt-auto"> <!-- This ensures the button is pushed to the bottom -->
+                        @if(auth()->user()->favourites->contains('barcode', $barcode))
+                            <form method="POST" action="{{ route('favourites.destroy') }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="barcode" value="{{ $barcode }}">
+                                <button type="submit" class="bordered-submit-button">
+                                    Remove from Favourites
+                                </button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('favourites.store') }}">
+                                @csrf
+                                <input type="hidden" name="barcode" value="{{ $barcode }}">
+                                <button type="submit" class="bordered-submit-button">
+                                    Add to Favourites
+                                </button>
+                            </form>
+                        @endif
+                    </div>
+                @endauth
             </div>
 
             <!-- Sustainability Info -->

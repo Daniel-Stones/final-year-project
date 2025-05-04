@@ -27,7 +27,6 @@ class SustainabilityCalculator
             return ['scores' => $scores, 'totalScore' => 0];
         }
 
-        // --- Packaging ---
         $packaging = $product['packaging'] ?? '';
         if (str_contains(strtolower($packaging), 'paper') || str_contains(strtolower($packaging), 'cardboard')) {
             $scores['packaging'] = ['score' => 2, 'percent' => 100, 'text' => 'Packaging: Cardboard'];
@@ -35,7 +34,7 @@ class SustainabilityCalculator
             $scores['packaging'] = ['score' => 1, 'percent' => 50, 'text' => 'Packaging: Plastic'];
         }
 
-        // --- Palm Oil ---
+
         if (isset($product['ingredients_analysis_tags']) && is_array($product['ingredients_analysis_tags'])) {
             if (in_array('en:palm-oil', $product['ingredients_analysis_tags'])) {
                 $scores['palm_oil'] = ['score' => 0, 'percent' => 0, 'text' => 'Palm oil: Found'];
@@ -44,13 +43,13 @@ class SustainabilityCalculator
             }
         }
 
-        // --- Organic ---
+
         $labels = $product['labels_tags'] ?? [];
         if (collect($labels)->some(fn($label) => str_contains(strtolower($label), 'organic') || str_contains(strtolower($label), 'bio'))) {
             $scores['organic'] = ['score' => 2, 'percent' => 100, 'text' => 'Organic: Yes'];
         }
 
-        // --- Origin + Distance + Carbon ---
+
         $origin = $product['origins'] ?? '';
         $weightKg = $this->parseWeightToKg($product['quantity'] ?? '');
 
@@ -59,7 +58,7 @@ class SustainabilityCalculator
             $isDomestic = str_contains($originLower, 'united kingdom') || str_contains($originLower, 'uk');
 
             if ($isDomestic) {
-                // Use fixed average domestic distance, e.g. 150km
+                // Use fixed average domestic distance 150km
                 $distanceKm = 150;
 
                 $contributions = [
@@ -106,7 +105,7 @@ class SustainabilityCalculator
             };
         
             // Calculate inverse percentage (lower emissions = higher percent)
-            $emissionsPercent = max(0, min(100, 100 - ($totalCarbon / 2))); // e.g., 100kg → 50%
+            $emissionsPercent = max(0, min(100, 100 - ($totalCarbon / 2))); 
         
             $scores['emissions'] = [
                 'score' => $emissionsScore,
